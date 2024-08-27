@@ -1,0 +1,167 @@
+ [
+  {
+    "id": 1,
+    "destination": "Paris, France",
+    "price": 1500,
+    "duration": "7 days",
+    "image":"https://i.ibb.co/MC3M0VV/paris.jpg",
+    "rating": 4.8,
+    "description": "Explore the city of love with visits to the Eiffel Tower, Louvre Museum, and more.",
+    "review": "A romantic experience with beautiful sights and delicious food.",
+    "attractions": ["Eiffel Tower", "Louvre Museum", "Notre-Dame Cathedral"]
+  },
+  {
+    "id": 2,
+    "destination": "Tokyo, Japan",
+    "price": 1800,
+    "duration": "10 days",
+    "rating": 4.9,
+    "image":"https://i.ibb.co/kx12d0D/tokyo.jpg",
+    "description": "Experience the vibrant culture of Tokyo with visits to Shibuya Crossing, Tokyo Tower, and traditional temples.",
+    "review": "An incredible blend of modern and traditional, with amazing food.",
+    "attractions": ["Shibuya Crossing", "Tokyo Tower", "Sensoji Temple"]
+  },
+  {
+    "id": 3,
+    "destination": "New York, USA",
+    "price": 1300,
+    "duration": "5 days",
+    "rating": 4.7,
+    "image": "https://i.ibb.co/174JtTn/nyc.jpg",
+    "description": "Discover the Big Apple with tours of Times Square, Central Park, and the Statue of Liberty.",
+    "review": "The city that never sleeps, full of energy and iconic landmarks.",
+    "attractions": ["Times Square", "Central Park", "Statue of Liberty"]
+  },
+  {
+    "id": 4,
+    "destination": "Sydney, Australia",
+    "price": 2000,
+    "duration": "8 days",
+    "image":"https://i.ibb.co/kx12d0D/tokyo.jpg",
+    "rating": 4.6,
+    "description": "Enjoy the stunning beaches and landmarks like the Sydney Opera House and Harbour Bridge.",
+    "review": "A beautiful city with amazing beaches and great outdoor activities.",
+    "attractions": ["Sydney Opera House", "Harbour Bridge", "Bondi Beach"]
+  },
+  {
+    "id": 5,
+    "destination": "Rome, Italy",
+    "price": 1700,
+    "duration": "7 days",
+    "rating": 4.8,
+    "image":"https://i.ibb.co/kx12d0D/tokyo.jpg",
+    "description": "Immerse yourself in history with visits to the Colosseum, Vatican City, and ancient ruins.",
+    "review": "A historical paradise with incredible architecture and delicious cuisine.",
+    "attractions": ["Colosseum", "Vatican City", "Roman Forum"]
+  },
+  {
+    "id": 6,
+    "destination": "Cairo, Egypt",
+    "price": 1400,
+    "duration": "6 days",
+    "rating": 4.5,
+    "image":"https://i.ibb.co/WvMjhm2/spain.jpg",
+    "description": "Explore the wonders of ancient Egypt with tours of the Pyramids of Giza and the Sphinx.",
+    "review": "A journey through ancient history, with awe-inspiring monuments.",
+    "attractions": ["Pyramids of Giza", "Sphinx", "Egyptian Museum"]
+  },
+  {
+    "id": 7,
+    "destination": "Cape Town, South Africa",
+    "price": 1600,
+    "duration": "7 days",
+    "rating": 4.7,
+    "image":"",
+    "description": "Experience the beauty of Cape Town with visits to Table Mountain, Robben Island, and local vineyards.",
+    "review": "Stunning natural landscapes and a vibrant cultural scene.",
+    "attractions": ["Table Mountain", "Robben Island", "Kirstenbosch Gardens"]
+  },
+  {
+    "id": 8,
+    "destination": "Bangkok, Thailand",
+    "price": 1200,
+    "duration": "6 days",
+    "rating": 4.6,
+    "image":"https://i.ibb.co/XWV2Qg2/turki.jpg",
+    "description": "Discover the bustling city life and beautiful temples in Bangkok, including the Grand Palace.",
+    "review": "A lively city with amazing street food and rich cultural heritage.",
+    "attractions": ["Grand Palace", "Wat Arun", "Chatuchak Market"]
+  },
+  {
+    "id": 9,
+    "destination": "Rio de Janeiro, Brazil",
+    "price": 1500,
+    "duration": "8 days",
+    "rating": 4.8,
+    "image":"https://i.ibb.co/WvMjhm2/spain.jpg",
+    "description": "Enjoy the vibrant culture and stunning beaches of Rio, with visits to Christ the Redeemer and Sugarloaf Mountain.",
+    "review": "A city full of life, with breathtaking views and beautiful beaches.",
+    "attractions": ["Christ the Redeemer", "Sugarloaf Mountain", "Copacabana Beach"]
+  },
+  {
+    "id": 10,
+    "destination": "Barcelona, Spain",
+    "price": 1700,
+    "duration": "7 days",
+    "rating": 4.9,
+    "image":"https://i.ibb.co/WvMjhm2/spain.jpg",
+    "description": "Explore the unique architecture and lively streets of Barcelona, including Sagrada Familia and Park Güell.",
+    "review": "An artistic and vibrant city with amazing architecture and cuisine.",
+    "attractions": ["Sagrada Familia", "Park Güell", "La Rambla"]
+  },
+  {
+    "id": 11,
+    "destination": "Marrakech, Morocco",
+    "price": 1300,
+    "duration": "6 days",
+    "rating": 4.7,
+    "image":"https://i.ibb.co/XWV2Qg2/turki.jpg",
+    "description": "Experience the exotic charm of Marrakech with visits to bustling souks, palaces, and gardens.",
+    "review": "A sensory overload of colors, sounds, and flavors in an exotic setting.",
+    "attractions": ["Jemaa el-Fnaa", "Bahia Palace", "Majorelle Garden"]
+  },
+  {
+    "id": 12,
+    "destination": "Istanbul, Turkey",
+    "price": 1600,
+    "duration": "7 days",
+    "rating": 4.6,
+    "image":"https://i.ibb.co/XWV2Qg2/turki.jpg",
+    "description": "Discover the rich history and culture of Istanbul, with visits to the Hagia Sophia, Blue Mosque, and Grand Bazaar.",
+    "review": "A city where East meets West, with incredible historical sites and vibrant markets.",
+    "attractions": ["Hagia Sophia", "Blue Mosque", "Grand Bazaar"]
+  },
+  {
+    "id": 13,
+    "destination": "Dubai, UAE",
+    "price": 1900,
+    "duration": "5 days",
+    "rating": 4.8,
+    "image":"https://i.ibb.co/mCYjzsM/greece.jpg",
+    "description": "Experience the luxury and modern wonders of Dubai, with visits to the Burj Khalifa, Palm Jumeirah, and Dubai Mall.",
+    "review": "A futuristic city with luxurious experiences and world-class attractions.",
+    "attractions": ["Burj Khalifa", "Palm Jumeirah", "Dubai Mall"]
+  },
+  {
+    "id": 14,
+    "destination": "Singapore",
+    "price": 1400,
+    "duration": "6 days",
+    "rating": 4.7,
+    "image":"https://i.ibb.co/XWV2Qg2/turki.jpg",
+    "description": "Explore the futuristic city-state of Singapore, with visits to Marina Bay Sands, Gardens by the Bay, and Sentosa Island.",
+    "review": "A clean and modern city with amazing attractions and great food.",
+    "attractions": ["Marina Bay Sands", "Gardens by the Bay", "Sentosa Island"]
+  },
+  {
+    "id": 15,
+    "destination": "Santorini, Greece",
+    "price": 1800,
+    "duration": "7 days",
+    "rating": 4.9,
+    "image":"https://i.ibb.co/mCYjzsM/greece.jpg",
+    "description": "Relax on the stunning island of Santorini, with its beautiful beaches, white-washed buildings, and incredible sunsets.",
+    "review": "A picturesque and romantic island with stunning views and delicious cuisine.",
+    "attractions": ["Oia", "Red Beach", "Akrotiri Archaeological Site"]
+  }
+]

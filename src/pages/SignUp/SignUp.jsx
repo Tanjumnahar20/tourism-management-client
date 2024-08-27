@@ -1,6 +1,7 @@
 import anime from 'animejs';
 import { useRef } from 'react';
 import useAuth from '../../CustomHooks/useAuth';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
     const {createUser} = useAuth();
@@ -71,6 +72,7 @@ const SignUp = () => {
                 >
                     Sign Up
                 </button>
+                <p>Already have an account? <button><Link className='text-blue-800' to='/login'>login here </Link></button> </p>
             </form>
         </div>
     </div>

@@ -8,6 +8,8 @@ import Main from "../../Layout/Main";
 import Home from "../Home/Home";
 import Destinations from "../Destinations/Destinations";
 import SignUp from "../SignUp/SignUp";
+import Login from "../Login/Login";
+import Services from "../Services/Services";
 
 
   const router = createBrowserRouter([
@@ -26,6 +28,14 @@ import SignUp from "../SignUp/SignUp";
         {
           path:'/signup',
           element:<SignUp></SignUp>
+        },
+        {
+          path:'/login',
+          element:<Login></Login>
+        },
+        {
+          path:'services',
+          element:<Services></Services>
         }
       ]
     },

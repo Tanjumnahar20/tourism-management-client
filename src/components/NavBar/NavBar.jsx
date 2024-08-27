@@ -17,7 +17,7 @@ const NavBar = () => {
   };
 
     return (
-        <nav className="flex items-center justify-between p-4 bg-gray-800 text-white">
+        <nav className="flex items-center justify-between p-4 bg-gray-800 text-white sticky top-0 z-50">
      
       <form onSubmit={handleSearch} className="flex">
         <input
