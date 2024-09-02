@@ -1,52 +1,38 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
-
-
 
 import { useEffect, useState } from 'react';
 import PopularPlace from '../Home/PopularPlace';
 import coverImg from '../../assets/cover/egypt4.jpg'
 import { Parallax } from 'react-parallax';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import DestinationCard from './DestinationCard';
 
 const Destinations = () => {
   const [content, setContent] = useState('Select a destination to see details');
   const [tourPlaces, setPopularPlace] = useState([]);
   const [selectedDestination, setSelectedDestination] = useState(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
-  // const handleAccordionClick = (details, name) => {
-  //   if (selectedDestination === name) {
-  //     setSelectedDestination(null); // Toggle off
-  //   } else {
-  //     setContent(details);
-  //     setSelectedDestination(name); // Toggle on
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetch('data.json')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       setPopularPlace(data);
-  //     });
-  // }, []);
-
-
-  // const [loading,setLoading] = useAuth(true);
 
   useEffect(() => {
     fetch('http://localhost:5000/places')
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         setPopularPlace(data)})
+        setLoading(false)
 
   }, [])
 
-  const handleDetails = () =>{
-    console.log('clicked');
-     navigate('/services')
+  const handleDetails = (tourPlace) =>{
+    console.log('tour id:',tourPlace);
+    if (tourPlace && tourPlace._id) {
+      navigate(`/destinationCard/${tourPlace._id}`);
+    }
+  }
+
+  if(loading){
+    <p>Loading...</p>
   }
 
   return (
@@ -82,31 +68,24 @@ const Destinations = () => {
           </p>
         </div>
 
-        <div onClick={handleDetails} className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-4 p-5 border-t-4 '>
-          {
-            tourPlaces.map((tourPlace, index) => (
-              <div key={index}
-                className={`relative overflow-hidden rounded-lg shadow-lg transform transition duration-300 `}>
-
-                <img
-                  src={tourPlace.image}
-                  alt={tourPlace.name}
-                  className="w-full h-64 object-cover"
-                />
-
-                <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300">
-                  <div className="text-center">
-                    <h3 className="text-white text-xl font-semibold">
-                      {tourPlace.
-                        destination
-                      }
-                    </h3>
-                  </div>
-                </div>
-
-              </div>
-            ))
-          }
+        <div  >
+       
+       {/* <Link  to={`/destinationCard/${1}`}  className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-4 p-5 border-t-4 '> */}
+       <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-4 p-5 border-t-4 '>
+       {tourPlaces.length > 0 ? (
+          tourPlaces?.map((tourPlace) => (
+            <DestinationCard
+              key={tourPlace._id}
+              tourPlace={tourPlace}
+              onClick={() => handleDetails(tourPlace)}
+            />
+          ))
+        ) : (
+          <p className="text-center text-red-500">Loading data or no data available.</p>
+        )}
+        </div>
+       {/* </Link> */}
+        
         </div>
       </div>
     </div>

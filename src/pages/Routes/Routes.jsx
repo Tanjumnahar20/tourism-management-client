@@ -10,6 +10,8 @@ import Destinations from "../Destinations/Destinations";
 import SignUp from "../SignUp/SignUp";
 import Login from "../Login/Login";
 import Services from "../Services/Services";
+import DestinationCard from "../Destinations/DestinationCard";
+import DestinationCardDetails from "../Destinations/DestinationCardDetails";
 
 
   const router = createBrowserRouter([
@@ -24,6 +26,20 @@ import Services from "../Services/Services";
         {
           path:'/destinations',
           element:<Destinations></Destinations>
+        },
+        {
+          path:'/destination/:id',
+          element:<DestinationCard></DestinationCard>,
+
+        },
+        {
+          path:'destinationCard/:id',
+          element:<DestinationCardDetails></DestinationCardDetails>,
+          loader: ({ params }) => {
+            console.log('Fetching data for ID:', params.id); // Debug log to check ID
+            return fetch(`http://localhost:5000/places/${params.id}`);
+          }
+
         },
         {
           path:'/signup',

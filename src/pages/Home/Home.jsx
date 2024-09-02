@@ -30,13 +30,13 @@ const Home = () => {
     fetch('http://localhost:5000/places')
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        // console.log(data);
         setPopularplace(data)})
 
   }, [])
 
   const totalPopularPlace = popularPlace.filter(ratedPlace=> ratedPlace.rating === 4.9)
-  console.log(totalPopularPlace);
+  // console.log(totalPopularPlace);
 
   return (
     <div>
