@@ -12,6 +12,9 @@ import Login from "../Login/Login";
 import Services from "../Services/Services";
 import DestinationCard from "../Destinations/DestinationCard";
 import DestinationCardDetails from "../Destinations/DestinationCardDetails";
+import Sidebar from "../Destinations/Sidebar";
+import SearchBar from "../../components/NavBar/SearchBar";
+import BillingDetails from "../BillingDetails/BillingDetails";
 
 
   const router = createBrowserRouter([
@@ -33,13 +36,23 @@ import DestinationCardDetails from "../Destinations/DestinationCardDetails";
 
         },
         {
+          path:'searcResults',
+          element: <SearchBar></SearchBar>
+        },
+        {
           path:'destinationCard/:id',
           element:<DestinationCardDetails></DestinationCardDetails>,
           loader: ({ params }) => {
-            console.log('Fetching data for ID:', params.id); // Debug log to check ID
+            // console.log('Fetching data for ID:', params.id); // Debug log to check ID
             return fetch(`http://localhost:5000/places/${params.id}`);
-          }
+          },
+          
 
+        },
+        {
+         path:'sidebar/:id'   ,
+         element:<Sidebar></Sidebar>,
+         loader: ({params}) => fetch(`http://localhost:5000/places/${params.id}`)
         },
         {
           path:'/signup',
@@ -52,6 +65,10 @@ import DestinationCardDetails from "../Destinations/DestinationCardDetails";
         {
           path:'services',
           element:<Services></Services>
+        },
+        {
+          path:'billing-details',
+          element:<BillingDetails></BillingDetails>
         }
       ]
     },

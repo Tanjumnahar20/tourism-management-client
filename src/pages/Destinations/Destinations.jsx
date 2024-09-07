@@ -19,8 +19,8 @@ const Destinations = () => {
     fetch('http://localhost:5000/places')
       .then(res => res.json())
       .then(data => {
+        setLoading(true)
         setPopularPlace(data)})
-        setLoading(false)
 
   }, [])
 
