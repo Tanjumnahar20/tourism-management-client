@@ -15,6 +15,7 @@ import DestinationCardDetails from "../Destinations/DestinationCardDetails";
 import Sidebar from "../Destinations/Sidebar";
 import SearchBar from "../../components/NavBar/SearchBar";
 import BillingDetails from "../BillingDetails/BillingDetails";
+import Payment from "../Payment/Payment";
 
 
   const router = createBrowserRouter([
@@ -69,7 +70,12 @@ import BillingDetails from "../BillingDetails/BillingDetails";
         {
           path:'billing-details',
           element:<BillingDetails></BillingDetails>
-        }
+        },
+        {
+          path: 'payment',
+          element:<Payment></Payment>
+        },
+        
       ]
     },
   ]);

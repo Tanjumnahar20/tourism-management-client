@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import  { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const BillingDetails = () => {
   const location = useLocation();
@@ -123,7 +123,7 @@ const BillingDetails = () => {
                 }`}
                 disabled={!isPaymentEnabled}
               >
-                Credit Card
+             <Link to='/payment'>  <button>Visa Card</button></Link>
               </button>
               <button
                 className={`w-full py-2 rounded-md shadow-md border border-gray-300 ${
@@ -145,8 +145,8 @@ const BillingDetails = () => {
               >
                 Bank Transfer
               </button>
-            </div>
-          </div>
+             </div>
+             
         </div>
 
         {/* Order Summary Section */}
@@ -169,6 +169,7 @@ const BillingDetails = () => {
         </div>
       </div>
     </div>
+   </div>
   );
 };
 
