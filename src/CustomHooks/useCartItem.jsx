@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "./useAuth";
 import useAxios from "./useAxios";
@@ -9,19 +10,19 @@ const useCartItem = () => {
 
 
 
-const {data: cart =[], refetch, isLoading} = useQuery({
-    
+  const { data: cart = [], refetch, isLoading } = useQuery({
     queryKey: ['cartItem', user?.email],
-    queryFn: async()=>{
-        if(isLoading){
-            <p>loading</p>
-        }
-        const res = await axiosSecure.get(`http://localhost:5000/carts?email=${user.email}`);
-        // console.log("cart = ", res);
-        return res.data
-    }
+    queryFn: async () => {
+      // Avoid making the API request if the user or email is not defined
+      if (!user?.email) {
+        return [];
+      }
 
-})
+      const res = await axiosSecure.get(`http://localhost:5000/carts?email=${user.email}`);
+      return res.data;
+    },
+    enabled: !!user?.email, // Only run the query if user.email is defined
+  });
 
     return [cart,refetch]
 };

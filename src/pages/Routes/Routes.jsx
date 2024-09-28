@@ -16,6 +16,8 @@ import Sidebar from "../Destinations/Sidebar";
 import SearchBar from "../../components/NavBar/SearchBar";
 import BillingDetails from "../BillingDetails/BillingDetails";
 import Payment from "../Payment/Payment";
+import Bookings from "../Bookings/Bookings";
+import PrivateRoute from "./PrivateRoute";
 
 
   const router = createBrowserRouter([
@@ -74,6 +76,10 @@ import Payment from "../Payment/Payment";
         {
           path: 'payment',
           element:<Payment></Payment>
+        },
+        {
+          path:'bookings',
+          element:<PrivateRoute><Bookings></Bookings></PrivateRoute>
         },
         
       ]

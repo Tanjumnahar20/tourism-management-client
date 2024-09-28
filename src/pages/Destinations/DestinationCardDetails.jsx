@@ -33,7 +33,7 @@ const DestinationCardDetails = () => {
             <p className="text-black font-thin font-serif text-2xl mb-4">{description}</p>
             <br />
             <div ><span className="text-lg text-yellow-300">Place will be visited:</span>
-              <div className="font-serif text-gray-500 mt-4"><li className=" ">{attractions[0]} </li>
+              <div className="font-serif text-gray-500 mt-4"><li >{attractions[0]} </li>
                 <li>{attractions[1]}</li>
                 <li>{attractions[2]}</li></div>
             </div>

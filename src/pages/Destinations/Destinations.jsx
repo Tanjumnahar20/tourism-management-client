@@ -7,6 +7,7 @@ import coverImg from '../../assets/cover/egypt4.jpg'
 import { Parallax } from 'react-parallax';
 import { Link, useNavigate } from 'react-router-dom';
 import DestinationCard from './DestinationCard';
+import useUrl from '../../CustomHooks/useUrl';
 
 const Destinations = () => {
   const [content, setContent] = useState('Select a destination to see details');
@@ -23,6 +24,8 @@ const Destinations = () => {
         setPopularPlace(data)})
 
   }, [])
+ 
+  console.log("tourplace=",tourPlaces);
 
   const handleDetails = (tourPlace) =>{
     console.log('tour id:',tourPlace);
@@ -72,7 +75,16 @@ const Destinations = () => {
        
        {/* <Link  to={`/destinationCard/${1}`}  className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-4 p-5 border-t-4 '> */}
        <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-4 p-5 border-t-4 '>
-       {tourPlaces.length > 0 ? (
+       {
+          tourPlaces?.map((tourPlace) => (
+            <DestinationCard
+              key={tourPlace._id}
+              tourPlace={tourPlace}
+              onClick={() => handleDetails(tourPlace)}
+            />
+          ))}
+        
+       {/* {tourPlaces.length > 0 ? (
           tourPlaces?.map((tourPlace) => (
             <DestinationCard
               key={tourPlace._id}
@@ -82,7 +94,7 @@ const Destinations = () => {
           ))
         ) : (
           <p className="text-center text-red-500">Loading data or no data available.</p>
-        )}
+        )} */}
         </div>
        {/* </Link> */}
         

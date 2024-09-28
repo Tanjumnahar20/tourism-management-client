@@ -14,27 +14,44 @@ const CheckOut = () => {
     const [error, setError] = useState();
     const axiosSecure = useAxios()
   const [ cart , refetch]= useCartItem()
+  const [isCartLoading, setIsCartLoading] = useState(true); 
+  console.log('cart', cart);
     const navigate = useNavigate()
     const {user} = useAuth();
     const [ clientSecret, setClientSecret] = useState('');
     const [ transactionId, setTransactionId] = useState();
+
     
-    const totalPrice = cart.reduce((total,item)=>(total+item.price),0)
-  
-    useEffect(()=>{
-      if(totalPrice>0){
-        axiosSecure.post('/create-payment-intent',{price: totalPrice})
-        .then(res=>{
-         console.log(res.data.clientSecret);
-         setClientSecret(res.data.clientSecret)
-      } )
+    
+
+    // const totalPrice = cart.reduce((total,item)=>(total+item.price),0)
+    const totalPrice = cart.length > 0 
+    ? cart.reduce((total, item) => {
+        const itemPrice = typeof item.price === 'string'
+          ? parseFloat(item.price.replace(/[^0-9.]/g, ''))
+          : item.price || 0;
+        return total + (itemPrice || 0);
+      }, 0)
+    : 0; // Default to 0 if cart is empty
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      setIsCartLoading(false); // Set loading to false once cart is loaded
+      console.log("totalPrice=", totalPrice);
+
+      if (totalPrice > 0) {
+        axiosSecure.post('/create-payment-intent', { price: totalPrice })
+          .then(res => {
+            console.log(res.data.clientSecret);
+            setClientSecret(res.data.clientSecret);
+          });
       }
-  
-    },[axiosSecure, totalPrice])
-       
+    }
+  }, [axiosSecure, cart, totalPrice]);
       const handleSubmit = async(e)=>{
           e.preventDefault();
-           if(!stripe || !elements){
+           if(!stripe || !elements || !clientSecret){
+            console.log("client secret not ready", clientSecret);
               return;
            }
   
@@ -93,16 +110,17 @@ const CheckOut = () => {
                   const dataId = res?.data?.paymentResult?.insertedId;
                   // console.log( 'saved payment info', dataId);
                   if(dataId){
-                    refetch();
+                   await refetch();
+                   console.log("Updated cart:", cart);
                     Swal.fire({
                       position: "top-end",
                       icon: "success",
-                      title: "Paid successfully!",
+                      title: `${totalPrice}Paid successfully!`,
                       showConfirmButton: false,
                       timer: 1500
                     });
   
-                    // navigate('/dashboard/paymentHistory')
+                    navigate('/bookings')
                     
                   }
                 
@@ -131,7 +149,7 @@ const CheckOut = () => {
           },
         }}
       />
-       <button className="btn btn-primary my-6" type="submit" disabled={!stripe || !clientSecret}>
+       <button className="btn btn-primary my-6" type="submit" disabled = {!clientSecret} >
         Pay
       </button>
       <p className="text-2xl text-red-700 ">{error}</p>

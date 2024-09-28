@@ -1,10 +1,15 @@
 import anime from 'animejs';
 import { useRef } from 'react';
 import useAuth from '../../CustomHooks/useAuth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
     const {createUser} = useAuth();
+    const from = location.state?. from?.pathname || '/';
+
     
 
     const formRef = useRef(null);
@@ -28,8 +33,25 @@ const SignUp = () => {
        createUser(email,password)
        .then(result=>{
         const user = result.user;
-        console.log('user created',user);
-        alert('user created successfully')
+        // console.log('user created',user);
+        Swal.fire({
+            title: `{user} successfully signed up`,
+            showClass: {
+              popup: `
+                animate__animated
+                animate__fadeInUp
+                animate__faster
+              `
+            },
+            hideClass: {
+              popup: `
+                animate__animated
+                animate__fadeOutDown
+                animate__faster
+              `
+            }
+          });
+          navigate(from, {replace:true})
        })
        .catch(err=>{
         console.log(err);

@@ -3,10 +3,19 @@ import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import logo from '../../assets/logo.jpg';
+import useAuth from "../../CustomHooks/useAuth";
 
 
 
 const NavBar = () => {
+
+  const {user,logOut} = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {navigate('/'); })
+  }
 
   return (
     <nav className=" bg-gray-800 text-yellow-400 sticky top-0 z-50">
@@ -17,11 +26,20 @@ const NavBar = () => {
       </div>
 
       <ul className="flex space-x-4 mr-5">
+        <>
         <li><NavLink to='/' className="hover:text-gray-400">Home</NavLink></li>
         <li><NavLink to='/destinations' className="hover:text-gray-400">Destinations</NavLink></li>
         <li><NavLink to='/services' className="hover:text-gray-400">Services</NavLink></li>
-        <li><NavLink to='/feedback' className="hover:text-gray-400">Feedback</NavLink></li>
-        <li><NavLink to='/signup' className="hover:text-gray-400">Sign up</NavLink></li>
+      
+          <li><NavLink to='/bookings' className="hover:text-gray-400">Bookings</NavLink></li>
+          
+        
+        { user ?
+          <li><NavLink to='/logout' className="hover:text-gray-400" onClick={handleLogOut}>Log Out</NavLink></li>
+          :
+          <li><NavLink to='/login' className="hover:text-gray-400">Login</NavLink></li>
+        }
+        </>
       </ul>
 
       <SearchBar />

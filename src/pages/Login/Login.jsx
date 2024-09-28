@@ -1,13 +1,18 @@
 /* eslint-disable no-undef */
 import anime from "animejs";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../CustomHooks/useAuth";
+import Swal from "sweetalert2";
 
 
 const Login = () => {
     const { login} = useAuth();
     const formRef = useRef(null);
+    const location = useLocation();
+    const navigate = useNavigate();
+    
+    const from = location.state?. from?.pathname || '/';
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -28,7 +33,27 @@ const Login = () => {
            const user = result.user;
             console.log(user);
             form.reset()
-            alert('logged in succes')
+
+            Swal.fire({
+                title: "login successful",
+                showClass: {
+                  popup: `
+                    animate__animated
+                    animate__fadeInUp
+                    animate__faster
+                  `
+                },
+                hideClass: {
+                  popup: `
+                    animate__animated
+                    animate__fadeOutDown
+                    animate__faster
+                  `
+                }
+              });
+
+              navigate(from, {replace:true})
+        
         })
         .catch(err=>{
             console.log(err.message);
