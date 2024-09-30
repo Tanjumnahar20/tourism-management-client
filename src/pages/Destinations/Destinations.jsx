@@ -25,7 +25,7 @@ const Destinations = () => {
 
   }, [])
  
-  console.log("tourplace=",tourPlaces);
+  // console.log("tourplace=",tourPlaces);
 
   const handleDetails = (tourPlace) =>{
     console.log('tour id:',tourPlace);

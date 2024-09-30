@@ -15,7 +15,7 @@ import DestinationCardDetails from "../Destinations/DestinationCardDetails";
 import Sidebar from "../Destinations/Sidebar";
 import SearchBar from "../../components/NavBar/SearchBar";
 import BillingDetails from "../BillingDetails/BillingDetails";
-import Payment from "../Payment/Payment";
+// import Payment from "../Payment/Payment";
 import Bookings from "../Bookings/Bookings";
 import PrivateRoute from "./PrivateRoute";
 
@@ -73,10 +73,10 @@ import PrivateRoute from "./PrivateRoute";
           path:'billing-details',
           element:<BillingDetails></BillingDetails>
         },
-        {
-          path: 'payment',
-          element:<Payment></Payment>
-        },
+        // {
+        //   path: 'payment/:cartId',
+        //   element:<Payment></Payment>
+        // },
         {
           path:'bookings',
           element:<PrivateRoute><Bookings></Bookings></PrivateRoute>
