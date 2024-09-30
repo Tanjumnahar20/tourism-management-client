@@ -114,7 +114,7 @@ CheckOut.propTypes = {
             timer: 3500
           });
 
-          navigate('/bookings');
+          navigate('/paymenthistory');
         }
       }
     }

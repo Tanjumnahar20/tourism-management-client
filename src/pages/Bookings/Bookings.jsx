@@ -36,7 +36,7 @@ const Bookings = ({ place }) => {
                 <td>{item.totalPrice}</td>
                 <td>{item.date}</td>
                 <td>
-                  <Link  className="btn btn-sm btn-primary cursor-pointer">
+                  <Link   className="btn btn-sm btn-primary cursor-pointer">
                     Payment
                   </Link>
                 </td>

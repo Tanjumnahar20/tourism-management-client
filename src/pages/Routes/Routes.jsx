@@ -18,6 +18,7 @@ import BillingDetails from "../BillingDetails/BillingDetails";
 // import Payment from "../Payment/Payment";
 import Bookings from "../Bookings/Bookings";
 import PrivateRoute from "./PrivateRoute";
+import PaymentHistory from "../Payment/PaymentHistory";
 
 
   const router = createBrowserRouter([
@@ -46,7 +47,6 @@ import PrivateRoute from "./PrivateRoute";
           path:'destinationCard/:id',
           element:<DestinationCardDetails></DestinationCardDetails>,
           loader: ({ params }) => {
-            // console.log('Fetching data for ID:', params.id); // Debug log to check ID
             return fetch(`http://localhost:5000/places/${params.id}`);
           },
           
@@ -73,13 +73,14 @@ import PrivateRoute from "./PrivateRoute";
           path:'billing-details',
           element:<BillingDetails></BillingDetails>
         },
-        // {
-        //   path: 'payment/:cartId',
-        //   element:<Payment></Payment>
-        // },
+       
         {
           path:'bookings',
           element:<PrivateRoute><Bookings></Bookings></PrivateRoute>
+        },
+        {
+          path:'paymenthistory',
+          element:<PaymentHistory></PaymentHistory>
         },
         
       ]

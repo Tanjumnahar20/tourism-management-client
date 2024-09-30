@@ -75,6 +75,8 @@ const BillingDetails = () => {
 
   const closeModal = () => setisOpen(false);
 
+   
+
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
       <div className="flex items-center justify-center">
