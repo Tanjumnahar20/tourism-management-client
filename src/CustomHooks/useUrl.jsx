@@ -7,7 +7,7 @@ const useUrl = () => {
     const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
-        fetch('http://localhost:5000/places')
+        fetch('https://tourism-maanagement-server.vercel.app/places')
         .then(res=>res.json())
         .then(data=>{
             // console.log('data in hooks', data);

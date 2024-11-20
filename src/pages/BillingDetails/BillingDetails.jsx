@@ -1,10 +1,14 @@
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import Modal from 'react-modal';
 import CheckOut from "../Payment/CheckOut";
+import useCartItem from "../../CustomHooks/useCartItem";
+import useAuth from "../../CustomHooks/useAuth";
+import useAxios from "../../CustomHooks/useAxios";
+import Swal from "sweetalert2";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Api_Key);
 
@@ -12,7 +16,9 @@ Modal.setAppElement('#root'); // Ensure your root element has this ID in index.h
 
 const BillingDetails = () => {
   const location = useLocation();
+  // console.log("location in billing=",);
   const { bookingData } = location.state || {};
+  console.log("booking data", bookingData);
   const [ticketNumber, setTicketNumber] = useState(bookingData?.numberOfTickets || 1);
   const [isPaymentEnabled, setIsPaymentEnabled] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
@@ -30,11 +36,15 @@ const BillingDetails = () => {
   const [zipCode, setZipCode] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [isOpen, setisOpen] = useState(false);
+  const [ refetch] = useCartItem();
+  const {user}= useAuth();
+  const axiosSecure = useAxios();
+  const navigate = useNavigate();
 
   const handleSaveAndContinue = async (e) => {
     e.preventDefault();
-
-    try {
+    
+    if(user && user.email){
       const booking = {
         userId: bookingData?.id,
         name: bookingData?.name,
@@ -50,17 +60,28 @@ const BillingDetails = () => {
         contactNumber,
         country,
       };
-
-      const response = await fetch('http://localhost:5000/carts', {
+  
+      const response = await fetch('https://tourism-maanagement-server.vercel.app/carts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(booking),
       });
-
       const result = await response.json();
-
+      if(result.insertedId){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${bookingData?.destination} booked successfully`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+       
+        //  refetch cart to count item
+        refetch();
+      }
+   
       if (response.ok) {
         setIsPaymentEnabled(true);
         setCart(result);
@@ -68,14 +89,30 @@ const BillingDetails = () => {
       } else {
         console.error('Failed to create booking:', result);
       }
-    } catch (error) {
-      console.error('Error occurred while creating booking:', error);
     }
+    
+    
+      else{
+        Swal.fire({
+          title: "Please, login!",
+          text: "login ",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "login now!"
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            navigate('/login', {state: {from:location, bookingData}})
+          }
+        });
+        
+      }
+    
   };
 
   const closeModal = () => setisOpen(false);
-
-   
 
   return (
     <div className="p-8 bg-gray-50 min-h-screen">
@@ -175,7 +212,7 @@ const BillingDetails = () => {
                 Name: <span className="font-medium">{bookingData?.name}</span>
               </p>
               <p className="text-sm text-gray-700">
-                Email: <span className="font-medium">{bookingData.email}</span>
+                Email: <span className="font-medium">{bookingData?.email}</span>
               </p>
               <p className="text-sm text-gray-700">
                 Destination: <span className="font-medium">{bookingData?.destination}</span>
@@ -224,4 +261,17 @@ const BillingDetails = () => {
 };
 
 export default BillingDetails;
+ 
+  
+  
+
+      
+   
+
+    
+
+ 
+
+   
+
 

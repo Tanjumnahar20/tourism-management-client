@@ -1,15 +1,21 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-
 import { useEffect, useState } from "react";
-import useCartItem from "../../CustomHooks/useCartItem";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAxios from "../../CustomHooks/useAxios";
+import useCartItem from "../../CustomHooks/useCartItem";
 
-const Bookings = ({ place }) => {
-  const [cart, refetch] = useCartItem();
-  console.log("cart = ", cart);
-  refetch()
+const Bookings = () => {
+ const [cart] = useCartItem()
+  const navigate = useNavigate();
+  const axiosSecure = useAxios();
+
+  
+
+  const handleButton = (cartId) => 
+    console.log("cartid", cartId);{
+    // navigate('/'); // Update the navigation if necessary
+  }
 
   return (
     <div>
@@ -18,11 +24,13 @@ const Bookings = ({ place }) => {
           <thead>
             <tr>
               <th>#</th>
+              <th>Name</th>
               <th>Destination</th>
               <th>Price</th>
               <th>No of Ticket</th>
               <th>Total Price</th>
               <th>Date</th>
+              <th>Email</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -30,13 +38,15 @@ const Bookings = ({ place }) => {
             {cart.map((item, index) => (
               <tr key={item._id}>
                 <th>{index + 1}</th>
+                <td>{item.name}</td>
                 <td>{item.destination}</td>
                 <td>{item.price}</td>
                 <td>{item.numberOfTickets}</td>
                 <td>{item.totalPrice}</td>
                 <td>{item.date}</td>
+                <td>{item.email}</td>
                 <td>
-                  <Link   className="btn btn-sm btn-primary cursor-pointer">
+                  <Link onClick={() => handleButton(item._id)} className="btn btn-sm btn-primary cursor-pointer">
                     Payment
                   </Link>
                 </td>

@@ -13,6 +13,9 @@ const Login = () => {
     const navigate = useNavigate();
     
     const from = location.state?. from?.pathname || '/';
+    console.log("state in login", location.state);
+    const bookingData = location.state?.bookingData;
+    console.log("booking data in login=", bookingData);
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -52,7 +55,7 @@ const Login = () => {
                 }
               });
 
-              navigate(from, {replace:true})
+              navigate(from, {replace:true, state:{bookingData}})
         
         })
         .catch(err=>{

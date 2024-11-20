@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 const PopularPlace = ({place}) => {
+  console.log("popular place",place);
 
-  const { description,id, review, destination,image} = place;
-  console.log(image);
+  const { description,id, review, destination,image,rating} = place;
+  // console.log(image);
    
    
 

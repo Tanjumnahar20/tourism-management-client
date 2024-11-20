@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/no-unknown-property */
 /* eslint-disable no-unused-vars */
 
@@ -8,6 +9,10 @@ import { Parallax } from 'react-parallax';
 import { Link, useNavigate } from 'react-router-dom';
 import DestinationCard from './DestinationCard';
 import useUrl from '../../CustomHooks/useUrl';
+import { Helmet } from 'react-helmet-async';
+import { useRef } from "react";
+import anime from "animejs";
+import { TypeAnimation } from 'react-type-animation';
 
 const Destinations = () => {
   const [content, setContent] = useState('Select a destination to see details');
@@ -17,7 +22,7 @@ const Destinations = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:5000/places')
+    fetch('https://tourism-maanagement-server.vercel.app/places')
       .then(res => res.json())
       .then(data => {
         setLoading(true)
@@ -25,7 +30,6 @@ const Destinations = () => {
 
   }, [])
  
-  // console.log("tourplace=",tourPlaces);
 
   const handleDetails = (tourPlace) =>{
     console.log('tour id:',tourPlace);
@@ -38,9 +42,15 @@ const Destinations = () => {
     <p>Loading...</p>
   }
 
+
   return (
 
     <div>
+      <Helmet>
+        <title>destination||</title>
+        <link rel="canonical" href="https://www.tacobell.com/" />
+        </Helmet>
+
       <Parallax className='cover-container '
         blur={{ min: -50, max: 40 }}
         bgImage={coverImg}
@@ -52,9 +62,17 @@ const Destinations = () => {
           <div className="hero-overlay bg-opacity-60"></div>
           <div className="hero-content text-center text-neutral-content">
             <div className="max-w-md">
-              <h1 className="mb-5 text-5xl font-bold uppercase cover-title"></h1>
-              <p className="mb-5 text-5xl">Our <strong>destination</strong> list.</p>
-            </div>
+              <TypeAnimation
+      sequence={[
+        "Our destination list", 
+        1000, 
+      ]}
+      wrapper="p"
+      cursor={true}
+      repeat={Infinity}
+      className="mb-5 text-5xl text-orange-500 font-serif"
+    />
+           </div>
           </div>
         </div>
       </Parallax>
@@ -73,7 +91,7 @@ const Destinations = () => {
 
         <div  >
        
-       {/* <Link  to={`/destinationCard/${1}`}  className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-4 p-5 border-t-4 '> */}
+      
        <div className='grid grid-cols-1 lg:grid-cols-4 md:grid-cols-3 gap-4 p-5 border-t-4 '>
        {
           tourPlaces?.map((tourPlace) => (
@@ -84,19 +102,8 @@ const Destinations = () => {
             />
           ))}
         
-       {/* {tourPlaces.length > 0 ? (
-          tourPlaces?.map((tourPlace) => (
-            <DestinationCard
-              key={tourPlace._id}
-              tourPlace={tourPlace}
-              onClick={() => handleDetails(tourPlace)}
-            />
-          ))
-        ) : (
-          <p className="text-center text-red-500">Loading data or no data available.</p>
-        )} */}
+     
         </div>
-       {/* </Link> */}
         
         </div>
       </div>

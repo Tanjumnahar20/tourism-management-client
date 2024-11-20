@@ -47,7 +47,7 @@ import PaymentHistory from "../Payment/PaymentHistory";
           path:'destinationCard/:id',
           element:<DestinationCardDetails></DestinationCardDetails>,
           loader: ({ params }) => {
-            return fetch(`http://localhost:5000/places/${params.id}`);
+            return fetch(`https://tourism-maanagement-server.vercel.app/places/${params.id}`);
           },
           
 
@@ -55,7 +55,7 @@ import PaymentHistory from "../Payment/PaymentHistory";
         {
          path:'sidebar/:id'   ,
          element:<Sidebar></Sidebar>,
-         loader: ({params}) => fetch(`http://localhost:5000/places/${params.id}`)
+         loader: ({params}) => fetch(`https://tourism-maanagement-server.vercel.app/places/${params.id}`)
         },
         {
           path:'/signup',

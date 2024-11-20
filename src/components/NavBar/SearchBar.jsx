@@ -11,7 +11,7 @@ const SearchBar = () => {
     event.preventDefault()
 
     try {
-      const response = await axios.get(`http://localhost:5000/search?query=${query}`);
+      const response = await axios.get(`https://tourism-maanagement-server.vercel.app/search?query=${query}`);
       setResults(response.data);
       if (response.data.length !== 0) {
         const searchId = response.data[0]._id;

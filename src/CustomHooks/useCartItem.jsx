@@ -14,7 +14,7 @@ const useCartItem = () => {
       if (!user?.email) {
         return [];
       }
-      const res = await axiosSecure.get(`http://localhost:5000/carts?email=${user.email}`);
+      const res = await axiosSecure.get(`https://tourism-maanagement-server.vercel.app/carts?email=${user.email}`);
       return res.data;
     },
     enabled: !!user?.email,

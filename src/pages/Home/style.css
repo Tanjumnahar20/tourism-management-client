@@ -14,5 +14,83 @@
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 }
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 1s ease-out;
+}
+
+/* General styles for extra-large text */
+.text-6xl {
+  font-size: 4rem;
+}
+
+.font-extrabold {
+  font-weight: 800;
+}
+
+/* Different animation styles for each slide */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInAndScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* For slide 1 */
+.animated-text-slide1 {
+  opacity: 0;
+  animation: slideInFromLeft 1.2s ease-out forwards;
+}
+
+/* For slide 2 */
+.animated-text-slide2 {
+  opacity: 0;
+  animation: slideInFromRight 1.2s ease-out forwards;
+}
+
+/* For slide 3 */
+.animated-text-slide3 {
+  opacity: 0;
+  animation: fadeInAndScale 1.2s ease-out forwards;
+}
+
+
